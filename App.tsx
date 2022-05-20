@@ -1,20 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { AuthProvider } from "./app/providers/AuthProvider";
+import { Navigation } from "./app/navigation/Navigation";
+import { LogBox } from "react-native";
+// tailwind
+import { TailwindProvider } from "tailwind-rn";
+import utilities from "./tailwind.json";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <TailwindProvider utilities={utilities}>
+      <AuthProvider>
+        <Navigation />
+      </AuthProvider>
+    </TailwindProvider>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+LogBox.ignoreAllLogs();
